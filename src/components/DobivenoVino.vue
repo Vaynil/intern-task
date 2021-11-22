@@ -1,0 +1,27 @@
+<template>
+  <div class="tekst">
+    <h1>{{ msg }}</h1>
+    <p>
+      Dobiveno Vino
+    </p>
+  </div>
+</template>
+
+<script>
+export default {
+
+}
+</script>
+
+<style scoped lang="scss">
+.tekst {
+  overflow: hidden;
+  padding: 20px;
+  background: #ebe1a9;
+  border-radius: 5px;
+}
+
+p {
+  margin-top: 20px;
+}
+</style>
