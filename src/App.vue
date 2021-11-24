@@ -1,6 +1,7 @@
 <template>
-  <div id="app">
+  <div class="app">
     <img alt="naslovna logo" src="./assets/naslovna.jpg" />
+    <div class="naslov">Vinoteka</div><br/>
     <router-link to="naslovna">Naslovna</router-link>
     <router-link to="anketa">Anketa</router-link>
     <router-link to="dobivenoVino">DobivenoVino</router-link>
@@ -24,15 +25,19 @@ export default {
 </script>
 
 <style lang="scss">
-#app {
+.app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
-  max-width: 600px;
   margin: 0 auto;
   text-align:center;
 }
 
+.naslov {
+  font-size: 48px;
+}
+
 .footer {
-background: #f0efef;
+  background: #d1d1d1;
+  max-height: 200px;
 }
 
 a {

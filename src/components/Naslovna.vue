@@ -1,14 +1,16 @@
 <template>
   <div class="tekst">
-    <h1>{{ msg }}</h1>
-    <p>
+    <p class="pocetak">
       Dobrodošli u Vinoteku
     </p>
+    <br/>
+    <img alt="slika1" src="@/assets/slika1.jpg" />
     <br/>
     <p>
       Ovdje ćete pronaći vina po vašem ukusu. Samo ispunite anketu odaberite vaše vino i dostavit ćemo na vašu adresu.
     </p>
-
+    <br/>
+    <img alt="slika2" src="@/assets/slika2.jpg" />
     <br/>
     <section>
         <b-button @click="anketa">Anketa</b-button>
@@ -56,9 +58,22 @@ export default {
   padding: 20px;
   background: #ebe1a9;
   border-radius: 5px;
+  max-width: 600px;
+  margin: 0 auto;
+  text-align:center;
+}
+
+.pocetak{
+  font-size: 24px;
 }
 
 p {
   margin-top: 20px;
 }
+
+.button {
+  background-color: #e3776f;
+  color: black;
+}
+
 </style>
