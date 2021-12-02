@@ -3,11 +3,11 @@
     <p class="pocetak">
       Ispunite potrebne podatke za dostavu
     </p>
-    <br/><br/>
+    <br/>
     <p>
       Ime
     </p>
-    <div class="field">
+    <div class="ime">
       <div class="control">
         <input class="input" type="text">
       </div>
@@ -15,7 +15,7 @@
     <p>
       Prezime
     </p>
-    <div class="field">
+    <div class="prezime">
       <div class="control">
         <input class="input" type="text">
       </div>
@@ -23,7 +23,7 @@
     <p>
       Vaš email
     </p>
-    <div class="field">
+    <div class="email">
       <div class="control">
         <input class="input" type="text">
       </div>
@@ -31,7 +31,7 @@
     <p>
       Telefon
     </p>
-    <div class="field">
+    <div class="telefon">
       <div class="control">
         <input class="input" type="text">
       </div>
@@ -39,7 +39,7 @@
     <p>
       Ulica,kućni broj
     </p>
-    <div class="field">
+    <div class="ulica">
       <div class="control">
         <input class="input" type="text">
       </div>
@@ -47,7 +47,7 @@
     <p>
       Grad
     </p>
-    <div class="field">
+    <div class="grad">
       <div class="control">
         <input class="input" type="text">
       </div>
@@ -55,7 +55,7 @@
     <p>
       Poštanski broj
     </p>
-    <div class="field">
+    <div class="postal">
       <div class="control">
         <input class="input" type="text">
       </div>
@@ -86,6 +86,34 @@ export default {
 
 .pocetak{
   font-weight:bold;
+}
+
+.ime{
+  max-width: 30%;
+}
+
+.prezime{
+  max-width: 35%;
+}
+
+.email{
+  max-width: 50%;
+}
+
+.telefon{
+  max-width: 50%;
+}
+
+.ulica{
+  max-width: 50%;
+}
+
+.grad{
+  max-width: 40%;
+}
+
+.postal{
+  max-width: 30%;
 }
 
 .button {

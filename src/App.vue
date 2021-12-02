@@ -46,7 +46,7 @@ a {
   font-weight: bold;
   padding: 30px;
   &.router-link-exact-active {
-    color: #42b983;
+    color: #d18484;
   }
 }
 

@@ -42,7 +42,7 @@
     <p>
       Ime
     </p>
-    <div class="field">
+    <div class="ime">
       <div class="control">
         <input class="input" type="text">
       </div>
@@ -50,7 +50,7 @@
     <p>
       Prezime
     </p>
-    <div class="field">
+    <div class="prezime">
       <div class="control">
         <input class="input" type="text">
       </div>
@@ -58,7 +58,7 @@
     <p>
       Vaš email
     </p>
-    <div class="field">
+    <div class="email">
       <div class="control">
         <input class="input" type="text">
       </div>
@@ -66,7 +66,7 @@
     <p>
       Ulica,kućni broj
     </p>
-    <div class="field">
+    <div class="ulica">
       <div class="control">
         <input class="input" type="text">
       </div>
@@ -74,7 +74,7 @@
     <p>
       Ulica,kućni broj 2
     </p>
-    <div class="field">
+    <div class="ulica2">
       <div class="control">
         <input class="input" type="text">
       </div>
@@ -82,7 +82,7 @@
     <p>
       Grad
     </p>
-    <div class="field">
+    <div class="grad">
       <div class="control">
         <input class="input" type="text">
       </div>
@@ -90,16 +90,14 @@
     <p>
       Zip ili Poštanski broj
     </p>
-    <div class="field">
+    <div class="postal">
       <div class="control">
         <input class="input" type="text">
       </div>
     </div>
-    <br/>
-    <b-checkbox>Zapamti metodu plaćanja</b-checkbox>
     <br/><br/>
     <div class="isplata">
-      <button class="button is-link">Isplata</button>
+      <button class="button is-link">Isporuka</button>
     </div>
   </div>
 </template>
@@ -126,17 +124,44 @@ export default {
 }
 
 .kartica{
-    max-width: 40%;
+  max-width: 40%;
 }
 
 .rok{
-    max-width: 10%;
+  max-width: 10%;
 }
 
 .kod{
-    max-width: 10%;
+  max-width: 10%;
 }
 
+.ime{
+  max-width: 30%;
+}
+
+.prezime{
+  max-width: 35%;
+}
+
+.email{
+  max-width: 50%;
+}
+
+.ulica{
+  max-width: 50%;
+}
+
+.ulica2{
+  max-width: 50%;
+}
+
+.grad{
+  max-width: 40%;
+}
+
+.postal{
+  max-width: 30%;
+}
 
 .button {
   background-color: #ebe1a9;
