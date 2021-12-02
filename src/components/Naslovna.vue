@@ -7,6 +7,12 @@
     <img alt="slika1" src="@/assets/slika1.jpg" />
     <br/>
     <p>
+      Malo informacija o vinu. <br/><br/>
+      Vino je alkoholno piće koje se proizvodi fermentacijom grožđa, ploda biljke vinove loze (lat. Vitis Vinifera), ali se može dobiti i od drugog voća, a ponekad i od žitarica. Jedan je od najstarijih poljoprivrednih proizvoda.
+      <br/><br/>Kemijska uravnoteženost grožđa omogućava prirodnu fermentaciju bez dodataka šećera, kiselina, enzima, vode ili bilo kojih drugih sastojaka. U procesu fermentacije, koji se još naziva i alkoholno vrenje, kvasac se hrani šećerom iz grožđa i pretvara ga u alkohol i ugljični dioksid. Vino je jedno od najpopularnijih alkoholnih pića u svijetu, a smatra se i jednim od najvažnijih sastojaka europskih i svih mediteranskih kuhinja. <br/>
+    </p>
+    <br/><br/>
+    <p>
       Ovdje ćete pronaći vina po vašem ukusu. Samo ispunite anketu odaberite vaše vino i dostavit ćemo na vašu adresu.
     </p>
     <br/>
@@ -22,22 +28,22 @@
     <br/>
     <div class="field">
       <div class="control">
-        <input class="input" type="text" placeholder="Your Name">
+        <input class="input" type="text" placeholder="Ime">
       </div>
     </div>
     <div class="field">
       <div class="control">
-        <input class="input" type="text" placeholder="Your Email">
+        <input class="input" type="text" placeholder="Email">
       </div>
     </div>
     <div class="field">
       <div class="control">
-        <input class="input" type="text" placeholder="Your Phone">
+        <input class="input" type="text" placeholder="Telefon">
       </div>
     </div>
     <div class="field">
       <div class="control">
-        <textarea class="textarea" placeholder="Your Message"></textarea>
+        <textarea class="textarea" placeholder="Vaša Poruka"></textarea>
       </div>
     </div>
     <div class="control">
@@ -65,6 +71,7 @@ export default {
 
 .pocetak{
   font-size: 24px;
+  font-weight: bold;
 }
 
 p {
@@ -72,7 +79,7 @@ p {
 }
 
 .button {
-  background-color: #e3776f;
+  background-color: #d18484;
   color: black;
 }
 

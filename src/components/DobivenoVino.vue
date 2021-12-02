@@ -1,6 +1,6 @@
 <template>
   <div class="tekst">
-    <p>
+    <p class="thick">
       Ovo su vaši ponuđeni odabiri. Odaberite proizvode.
     </p>
     <img alt="vino1" width="200" height="300" src="@/assets/chardonnay.jpg" />
@@ -39,8 +39,12 @@ export default {
   text-align:center;
 }
 
+p.thick {
+  font-weight: bold;
+}
+
 .button {
-  background-color: #e3776f;
+  background-color: #d18484;
   color: black;
 }
 

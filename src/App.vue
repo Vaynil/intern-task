@@ -6,6 +6,7 @@
     <router-link to="anketa">Anketa</router-link>
     <router-link to="dobivenoVino">DobivenoVino</router-link>
     <router-link to="dostava">Dostava</router-link>
+    <router-link to="plaćanje">Plaćanje</router-link>
     <router-view/>
     <footer class="footer">
     <div class="footer">
@@ -33,6 +34,7 @@ export default {
 
 .naslov {
   font-size: 48px;
+  font-weight: bold;
 }
 
 .footer {
@@ -41,7 +43,11 @@ export default {
 }
 
 a {
-  padding: 20px;
+  font-weight: bold;
+  padding: 30px;
+  &.router-link-exact-active {
+    color: #42b983;
+  }
 }
 
 img {

@@ -1,6 +1,6 @@
 <template>
   <div class="tekst">
-    <p>
+    <p class="pocetak">
       Ispunite potrebne podatke za dostavu
     </p>
     <br/><br/>
@@ -77,11 +77,15 @@ export default {
 .tekst {
   overflow: hidden;
   padding: 20px;
-  background: #e3776f;
+  background: #d18484;
   border-radius: 5px;
   text-align: left;
   max-width: 600px;
   margin: 0 auto;
+}
+
+.pocetak{
+  font-weight:bold;
 }
 
 .button {
