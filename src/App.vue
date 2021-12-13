@@ -6,7 +6,7 @@
     <router-link to="anketa">Anketa</router-link>
     <router-link to="dobivenoVino">DobivenoVino</router-link>
     <router-link to="dostava">Dostava</router-link>
-    <router-link to="plaćanje">Plaćanje</router-link>
+    <router-link to="placanje">Plaćanje</router-link>
     <router-view/>
     <footer class="footer">
     <div class="footer">

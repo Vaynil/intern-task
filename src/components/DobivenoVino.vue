@@ -4,28 +4,34 @@
       Ovo su vaši ponuđeni odabiri. Odaberite proizvode.
     </p>
     <img alt="vino1" width="200" height="300" src="@/assets/chardonnay.jpg" />
-    <p>
-      Chardonnay <br/> Ocjena 4.9/5 <br/> Cijena 50$
-    </p>
+    <ul>
+      <li v-for= "item in vino1" :key="item">{{ item }}</li>
+    </ul>
     <img alt="vino2" width="300" height="300" src="@/assets/sauvignon-blanc.png" />
-    <p>
-      Sauvignon-Blanc <br/> Ocjena 4.6/5 <br/> Cijena 25$
-    </p>
+    <ul>
+      <li v-for= "item in vino2" :key="item">{{ item }}</li>
+    </ul>
     <img alt="vino3" width="300" height="300" src="@/assets/pinot-grigio.jpg" />
-    <p>
-      Pinot Grigio <br/> Ocjena 4.7/5 <br/> Cijena 15$
-    </p>
+    <ul>
+      <li v-for= "item in vino3" :key="item">{{ item }}</li>
+    </ul>
     <br/>
-    <div class="control">
+    <div>
       <button class="button is-link">Dostava</button>
     </div>
   </div>
 </template>
 
 <script>
-export default {
-
-}
+  export default {
+    data: () => {
+      return{
+        vino1:['Chardonnay', 'Ocjena 4.9/5', 'Cijena 50$'],
+        vino2:['Sauvignon-Blanc','Ocjena 4.6/5', 'Cijena 25$'],
+        vino3:['Pinot Grigio', 'Ocjena 4.7/5', 'Cijena 15$']
+      }
+    }
+  }
 </script>
 
 <style scoped lang="scss">

@@ -5,7 +5,7 @@ import Naslovna from '@/components/Naslovna'
 import Anketa from '@/components/Anketa'
 import DobivenoVino from '@/components/DobivenoVino'
 import Dostava from '@/components/Dostava'
-import Plaćanje from '@/components/Plaćanje'
+import Placanje from '@/components/Placanje'
 
 Vue.use(Router)
 
@@ -32,9 +32,9 @@ export default new Router({
             component: Dostava
         },
         {
-            path: '/plaćanje',
-            name: 'Plaćanje',
-            component: Plaćanje
+            path: '/placanje',
+            name: 'Placanje',
+            component: Placanje
         }
     ]
 })
