@@ -19,42 +19,48 @@
     <img alt="slika2" src="@/assets/slika2.jpg" />
     <br/>
     <section>
-        <b-button @click="anketa">Anketa</b-button>
+        <b-button @click="goToAnketa">Anketa</b-button>
     </section>
-    <br/>
+    <br/><br/>
     <h1>
     Kontaktirajte nas za bilo kakva pitanja:
     </h1>
     <br/>
-    <div class="field">
-      <div class="control">
-        <input class="input" type="text" placeholder="Ime">
-      </div>
-    </div>
-    <div class="field">
-      <div class="control">
-        <input class="input" type="text" placeholder="Email">
-      </div>
-    </div>
-    <div class="field">
-      <div class="control">
-        <input class="input" type="text" placeholder="Telefon">
-      </div>
-    </div>
-    <div class="field">
-      <div class="control">
-        <textarea class="textarea" placeholder="Vaša Poruka"></textarea>
-      </div>
-    </div>
+    <form>
     <div class="control">
-      <button class="button is-link">Submit</button>
+      <input class="input" name="name" type="text" placeholder="Ime">
+    </div><br/>
+    <div class="control">
+        <input class="input" name="email" type="text" placeholder="Email">
+    </div><br/>
+    <div class="control">
+      <input class="input" name="number" type="text" placeholder="Telefon">
+    </div><br/>
+    <div class="control">
+      <textarea class="textarea" name="msg" placeholder="Poruka"></textarea>
+    </div><br/>
+    <div class="control">
+      <button class="button is-link" type="submit" value="Submit">Submit</button>
     </div>
-  </div>
+    </form>
+    </div>
 </template>
 
 <script>
-export default {
-
+  export default {
+    data: () => {
+      return{
+        name:null,
+        email:null,
+        number:null,
+        msg:null
+      }
+    },
+  methods:{
+    goToAnketa(){
+      this.$router.push('/Anketa'); 
+    }
+  }
 }
 </script>
 

@@ -1,12 +1,13 @@
 <template>
   <div class="tekst">
+  <form>
     <p class="pocetak">
       Metoda plaćanja
     </p>
     <br/>
-    <div class="dropdown">
+    <div class="choose">
         <button class="dropbtn">Izaberite metodu plaćanja</button>
-        <div class="dropdown-content">
+        <div class="choose-card" name="choose">
             <a href="#">Visa</a>
             <a href="#">Mastercard</a>
             <a href="#">PayPal</a>
@@ -15,24 +16,24 @@
     <p>
       Broj kartice
     </p>
-    <div class="kartica">
+    <div class="card">
       <div class="control">
-        <input class="input" type="text">
+        <input class="input" name="card" type="text">
       </div>
     </div>
     <p>
       Rok upotrebe kartice
     </p>
-    <div class="rok">
-        <input class="input" type="number">
-        <input class="input" type="number">
+    <div class="expireDate">
+        <input class="input" name="day" type="number">
+        <input class="input" name="month" type="number">
     </div>
     <p>
       Sigurnosni kod
     </p>
-    <div class="kod">
+    <div class="code">
       <div class="control">
-        <input class="input" type="text">
+        <input class="input" name="secCode" type="number">
       </div>
     </div>
     <br/>
@@ -42,17 +43,17 @@
     <p>
       Ime
     </p>
-    <div class="ime">
+    <div class="name">
       <div class="control">
-        <input class="input" type="text">
+        <input class="input" name="name" type="text">
       </div>
     </div>
     <p>
       Prezime
     </p>
-    <div class="prezime">
+    <div class="surname">
       <div class="control">
-        <input class="input" type="text">
+        <input class="input" name="surname" type="text">
       </div>
     </div>
     <p>
@@ -60,50 +61,72 @@
     </p>
     <div class="email">
       <div class="control">
-        <input class="input" type="text">
+        <input class="input" name="email" type="text">
       </div>
     </div>
     <p>
       Ulica,kućni broj
     </p>
-    <div class="ulica">
+    <div class="street">
       <div class="control">
-        <input class="input" type="text">
+        <input class="input" name="street" type="text">
       </div>
     </div>
     <p>
       Ulica,kućni broj 2
     </p>
-    <div class="ulica2">
+    <div class="street2">
       <div class="control">
-        <input class="input" type="text">
+        <input class="input" name="street2" type="text">
       </div>
     </div>
     <p>
       Grad
     </p>
-    <div class="grad">
+    <div class="city">
       <div class="control">
-        <input class="input" type="text">
+        <input class="input" name="city" type="text">
       </div>
     </div>
     <p>
       Zip ili Poštanski broj
     </p>
-    <div class="postal">
+    <div class="postalCode">
       <div class="control">
-        <input class="input" type="text">
+        <input class="input" name="postalCode" type="text">
       </div>
     </div>
     <br/><br/>
     <div class="isplata">
-      <button class="button is-link">Isporuka</button>
+      <button class="button is-link" @click="isporuka" type="submit" value="Submit">Isporuka</button>
     </div>
+  </form>  
   </div>
 </template>
 
 <script>
 export default {
+  data: () => {
+      return{
+        choose:null,
+        card:null,
+        day:null,
+        month:null,
+        secCode:null,
+        name:null,
+        surname:null,
+        email:null,
+        street:null,
+        street2:null,
+        city:null,
+        postalCode:null
+      }
+    },
+  methods:{
+    isporuka(){
+      this.$buefy.notification.open('Isporučeno, zahvaljujemo na korištenju naše aplikacije :)')
+    }
+  }
 
 }
 </script>
@@ -123,23 +146,23 @@ export default {
   font-weight: bold;
 }
 
-.kartica{
+.card{
   max-width: 40%;
 }
 
-.rok{
+.expireDate{
   max-width: 10%;
 }
 
-.kod{
-  max-width: 10%;
+.code{
+  max-width: 15%;
 }
 
-.ime{
+.name{
   max-width: 30%;
 }
 
-.prezime{
+.surname{
   max-width: 35%;
 }
 
@@ -147,19 +170,19 @@ export default {
   max-width: 50%;
 }
 
-.ulica{
+.street{
   max-width: 50%;
 }
 
-.ulica2{
+.street2{
   max-width: 50%;
 }
 
-.grad{
+.city{
   max-width: 40%;
 }
 
-.postal{
+.postalCode{
   max-width: 30%;
 }
 
@@ -175,28 +198,28 @@ export default {
   border: none;
 }
 
-.dropdown {
+.choose {
   position: relative;
   display: inline-block;
 }
 
-.dropdown-content{
+.choose-card{
     display: none;
     background-color: #f1f1f1;
 }
 
-.dropdown-content a {
+.choose-card a {
   color: black;
   padding: 12px 16px;
   text-decoration: none;
   display: block;
 }
 
-.dropdown-content a:hover {background-color: #ddd;}
+.choose-card a:hover {background-color: #ddd;}
 
-.dropdown:hover .dropdown-content {display: block;}
+.choose:hover .choose-card {display: block;}
 
-.dropdown:hover .dropbtn {background-color: #e3dec3;}
+.choose:hover .dropbtn {background-color: #e3dec3;}
 
 .isplata{
     text-align: right;

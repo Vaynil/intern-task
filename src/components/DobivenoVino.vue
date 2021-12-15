@@ -17,7 +17,7 @@
     </ul>
     <br/>
     <div>
-      <button class="button is-link">Dostava</button>
+      <button class="button is-link" @click="goToDostava">Dostava</button>
     </div>
   </div>
 </template>
@@ -30,8 +30,13 @@
         vino2:['Sauvignon-Blanc','Ocjena 4.6/5', 'Cijena 25$'],
         vino3:['Pinot Grigio', 'Ocjena 4.7/5', 'Cijena 15$']
       }
+    },
+  methods:{
+    goToDostava(){
+      this.$router.push('/Dostava'); 
     }
   }
+}
 </script>
 
 <style scoped lang="scss">

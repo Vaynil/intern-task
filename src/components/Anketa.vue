@@ -4,12 +4,13 @@
       U ovoj anketi ćete nam odgovoriti na nekoliko pitanja kako bi Vam mogli preporučiti najbolje izbore naših Vina.
     </p>
     <br/><br/>
+    <form>
     <p class="thick">
       Imate li preferiranu boju vina koju želite?
     </p>
     <div class="field">
       <div class="control">
-        <input class="input" type="text">
+        <input class="input" name="odg1" v-model="odg1" type="text">
       </div>
     </div>
     <br/>
@@ -18,7 +19,7 @@
     </p>
     <div class="field">
       <div class="control">
-        <input class="input" type="text">
+        <input class="input" name="odg2" v-model="odg2" type="text">
       </div>
     </div>
     <br/>
@@ -27,7 +28,7 @@
     </p>
     <div class="field">
       <div class="control">
-        <input class="input" type="text">
+        <input class="input" name="odg3" v-model="odg3" type="text">
       </div>
     </div>
     <br/>
@@ -36,7 +37,7 @@
     </p>
     <div class="field">
       <div class="control">
-        <input class="input" type="text">
+        <input class="input" name="odg4" v-model="odg4" type="text">
       </div>
     </div>
     <br/>
@@ -45,7 +46,7 @@
     </p>
     <div class="field">
       <div class="control">
-        <input class="input" type="text">
+        <input class="input" name="odg5" v-model="odg5" type="text">
       </div>
     </div>
     <br/>
@@ -54,17 +55,33 @@
     </p>
     <div class="field">
       <div class="control">
-        <input class="input" type="text">
+        <input class="input" name="odg6" v-model="odg6" type="text">
       </div>
     </div>
     <div class="control">
-      <button class="button is-link">Pošalji</button>
+      <button class="button is-link" type="submit" value="Submit">Pošalji</button>
     </div>
+    </form>
   </div>
 </template>
 
 <script>
 export default {
+  data: () => {
+      return{
+        odg1:null,
+        odg2:null,
+        odg3:null,
+        odg4:null,
+        odg5:null,
+        odg6:null
+      }
+    },
+  methods:{
+    goToDobivenoVino(){
+      this.$router.push('/DobivenoVino'); 
+    }
+  }
 
 }
 </script>

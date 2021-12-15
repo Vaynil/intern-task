@@ -4,12 +4,13 @@
       Ispunite potrebne podatke za dostavu
     </p>
     <br/>
+    <form>
     <p>
       Ime
     </p>
     <div class="ime">
       <div class="control">
-        <input class="input" type="text">
+        <input class="input" name="name" type="text">
       </div>
     </div>
     <p>
@@ -17,7 +18,7 @@
     </p>
     <div class="prezime">
       <div class="control">
-        <input class="input" type="text">
+        <input class="input" name="surname" type="text">
       </div>
     </div>
     <p>
@@ -25,7 +26,7 @@
     </p>
     <div class="email">
       <div class="control">
-        <input class="input" type="text">
+        <input class="input" name="email" type="text">
       </div>
     </div>
     <p>
@@ -33,7 +34,7 @@
     </p>
     <div class="telefon">
       <div class="control">
-        <input class="input" type="text">
+        <input class="input" name="number" type="number">
       </div>
     </div>
     <p>
@@ -41,7 +42,7 @@
     </p>
     <div class="ulica">
       <div class="control">
-        <input class="input" type="text">
+        <input class="input" name="street" type="text">
       </div>
     </div>
     <p>
@@ -49,7 +50,7 @@
     </p>
     <div class="grad">
       <div class="control">
-        <input class="input" type="text">
+        <input class="input" name="city" type="text">
       </div>
     </div>
     <p>
@@ -57,18 +58,35 @@
     </p>
     <div class="postal">
       <div class="control">
-        <input class="input" type="text">
+        <input class="input" name="postalCode" type="text">
       </div>
     </div>
     <br/>
     <div class="control">
-      <button class="button is-link">Nastavi do plaćanja i isporuke</button>
+      <button class="button is-link" @click="goToPlacanje" type="submit" value="Submit">Nastavi do plaćanja i isporuke</button>
     </div>
+    </form>
   </div>
 </template>
 
 <script>
 export default {
+  data: () => {
+      return{
+        name:null,
+        surname:null,
+        email:null,
+        number:null,
+        street:null,
+        city:null,
+        postalCode:null
+      }
+    },
+  methods:{
+    goToPlacanje(){
+      this.$router.push('/Placanje'); 
+    }
+  }
 
 }
 </script>
