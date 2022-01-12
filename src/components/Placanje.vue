@@ -1,134 +1,118 @@
 <template>
   <div class="tekst">
-  <form>
-    <p class="pocetak">
-      Metoda plaćanja
-    </p>
-    <br/>
-    <div class="choose">
+    <form>
+      <p class="pocetak">Metoda plaćanja</p>
+      <br />
+      <div class="choose">
         <button class="dropbtn">Izaberite metodu plaćanja</button>
         <div class="choose-card" name="choose">
-            <a href="#">Visa</a>
-            <a href="#">Mastercard</a>
-            <a href="#">PayPal</a>
+          <a href="#">Visa</a>
+          <a href="#">Mastercard</a>
+          <a href="#">PayPal</a>
         </div>
-    </div>
-    <p>
-      Broj kartice
-    </p>
-    <div class="card">
-      <div class="control">
-        <input class="input" name="card" type="text">
       </div>
-    </div>
-    <p>
-      Rok upotrebe kartice
-    </p>
-    <div class="expireDate">
-        <input class="input" name="day" type="number">
-        <input class="input" name="month" type="number">
-    </div>
-    <p>
-      Sigurnosni kod
-    </p>
-    <div class="code">
-      <div class="control">
-        <input class="input" name="secCode" type="number">
+      <p>Broj kartice</p>
+      <div class="card">
+        <div class="control">
+          <input class="input" name="card" type="text" />
+        </div>
       </div>
-    </div>
-    <br/>
-    <p class="pocetak">
-      Podaci o naplati
-    </p>
-    <p>
-      Ime
-    </p>
-    <div class="name">
-      <div class="control">
-        <input class="input" name="name" type="text">
+      <p>Rok upotrebe kartice</p>
+      <div class="expireDate">
+        <input class="input" name="day" type="number" />
+        <input class="input" name="month" type="number" />
       </div>
-    </div>
-    <p>
-      Prezime
-    </p>
-    <div class="surname">
-      <div class="control">
-        <input class="input" name="surname" type="text">
+      <p>Sigurnosni kod</p>
+      <div class="code">
+        <div class="control">
+          <input class="input" name="secCode" type="number" />
+        </div>
       </div>
-    </div>
-    <p>
-      Vaš email
-    </p>
-    <div class="email">
-      <div class="control">
-        <input class="input" name="email" type="text">
+      <br />
+      <p class="pocetak">Podaci o naplati</p>
+      <p>Ime</p>
+      <div class="name">
+        <div class="control">
+          <input class="input" name="name" type="text" />
+        </div>
       </div>
-    </div>
-    <p>
-      Ulica,kućni broj
-    </p>
-    <div class="street">
-      <div class="control">
-        <input class="input" name="street" type="text">
+      <p>Prezime</p>
+      <div class="surname">
+        <div class="control">
+          <input class="input" name="surname" type="text" />
+        </div>
       </div>
-    </div>
-    <p>
-      Ulica,kućni broj 2
-    </p>
-    <div class="street2">
-      <div class="control">
-        <input class="input" name="street2" type="text">
+      <p>Vaš email</p>
+      <div class="email">
+        <div class="control">
+          <input class="input" name="email" type="text" />
+        </div>
       </div>
-    </div>
-    <p>
-      Grad
-    </p>
-    <div class="city">
-      <div class="control">
-        <input class="input" name="city" type="text">
+      <p>Ulica,kućni broj</p>
+      <div class="street">
+        <div class="control">
+          <input class="input" name="street" type="text" />
+        </div>
       </div>
-    </div>
-    <p>
-      Zip ili Poštanski broj
-    </p>
-    <div class="postalCode">
-      <div class="control">
-        <input class="input" name="postalCode" type="text">
+      <p>Ulica,kućni broj 2</p>
+      <div class="street2">
+        <div class="control">
+          <input class="input" name="street2" type="text" />
+        </div>
       </div>
-    </div>
-    <br/><br/>
-    <div class="isplata">
-      <button class="button is-link" @click="isporuka" type="submit" value="Submit">Isporuka</button>
-    </div>
-  </form>  
+      <p>Grad</p>
+      <div class="city">
+        <div class="control">
+          <input class="input" name="city" type="text" />
+        </div>
+      </div>
+      <p>Zip ili Poštanski broj</p>
+      <div class="postalCode">
+        <div class="control">
+          <input class="input" name="postalCode" type="text" />
+        </div>
+      </div>
+      <br /><br />
+      <div class="isplata">
+        <button
+          class="button is-link"
+          @click="isporuka"
+          type="submit"
+          value="Submit"
+        >
+          Isporuka
+        </button>
+      </div>
+    </form>
   </div>
 </template>
 
 <script>
 export default {
   data: () => {
-      return{
-        choose:null,
-        card:null,
-        day:null,
-        month:null,
-        secCode:null,
-        name:null,
-        surname:null,
-        email:null,
-        street:null,
-        street2:null,
-        city:null,
-        postalCode:null
-      }
+    return {
+      choose: null,
+      card: null,
+      day: null,
+      month: null,
+      secCode: null,
+      name: null,
+      surname: null,
+      email: null,
+      street: null,
+      street2: null,
+      city: null,
+      postalCode: null,
+    };
+  },
+  methods: {
+    isporuka() {
+      this.$buefy.notification.open(
+        "Isporučeno, zahvaljujemo na korištenju naše aplikacije :)"
+      );
     },
-  methods:{
-    isporuka(){
-      this.$buefy.notification.open('Isporučeno, zahvaljujemo na korištenju naše aplikacije :)')
-    }
-  }
-
-}
+  },
+};
 </script>
 
 <style scoped lang="scss">
@@ -142,47 +126,47 @@ export default {
   margin: 0 auto;
 }
 
-.pocetak{
+.pocetak {
   font-weight: bold;
 }
 
-.card{
+.card {
   max-width: 40%;
 }
 
-.expireDate{
+.expireDate {
   max-width: 10%;
 }
 
-.code{
+.code {
   max-width: 15%;
 }
 
-.name{
+.name {
   max-width: 30%;
 }
 
-.surname{
+.surname {
   max-width: 35%;
 }
 
-.email{
+.email {
   max-width: 50%;
 }
 
-.street{
+.street {
   max-width: 50%;
 }
 
-.street2{
+.street2 {
   max-width: 50%;
 }
 
-.city{
+.city {
   max-width: 40%;
 }
 
-.postalCode{
+.postalCode {
   max-width: 30%;
 }
 
@@ -203,9 +187,9 @@ export default {
   display: inline-block;
 }
 
-.choose-card{
-    display: none;
-    background-color: #f1f1f1;
+.choose-card {
+  display: none;
+  background-color: #f1f1f1;
 }
 
 .choose-card a {
@@ -215,14 +199,20 @@ export default {
   display: block;
 }
 
-.choose-card a:hover {background-color: #ddd;}
+.choose-card a:hover {
+  background-color: #ddd;
+}
 
-.choose:hover .choose-card {display: block;}
+.choose:hover .choose-card {
+  display: block;
+}
 
-.choose:hover .dropbtn {background-color: #e3dec3;}
+.choose:hover .dropbtn {
+  background-color: #e3dec3;
+}
 
-.isplata{
-    text-align: right;
+.isplata {
+  text-align: right;
 }
 
 p {
