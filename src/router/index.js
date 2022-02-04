@@ -3,9 +3,10 @@ import Router from "vue-router";
 
 import Naslovna from "@/components/Naslovna";
 import Anketa from "@/components/Anketa";
-import DobivenoVino from "@/components/DobivenoVino";
+import Vino from "@/components/Vino";
 import Dostava from "@/components/Dostava";
 import Placanje from "@/components/Placanje";
+import Submit from "@/components/Submit";
 
 Vue.use(Router);
 
@@ -17,14 +18,19 @@ export default new Router({
       component: Naslovna,
     },
     {
+      path: "/submit",
+      name: "Submit",
+      component: Submit,
+    },
+    {
       path: "/anketa",
       name: "Anketa",
       component: Anketa,
     },
     {
-      path: "/dobivenoVino",
-      name: "DobivenoVino",
-      component: DobivenoVino,
+      path: "/vino",
+      name: "Vino",
+      component: Vino,
     },
     {
       path: "/dostava",

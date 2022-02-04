@@ -20,8 +20,9 @@
     </p>
     <br /><br />
     <p>
-      Ovdje ćete pronaći vina po vašem ukusu. Samo ispunite anketu odaberite
-      vaše vino i dostavit ćemo na vašu adresu.
+      Ovdje ćete pronaći vina po vašem ukusu. Odaberite vino po vašemu ukusu i mi ćemo Vam dostaviti u
+      najkraćem roku na Vašu kućnu adresu. Kako bi došli do naših najboljih izbora Vina trebate
+      ispuniti našu anketu za poboljšanje naših budućih ponuda.
     </p>
     <br />
     <img alt="slika2" src="@/assets/slika2.jpg" />
@@ -32,21 +33,21 @@
     <br /><br />
     <h1>Kontaktirajte nas za bilo kakva pitanja:</h1>
     <br />
-    <form>
+    <form id="app" @submit.stop.prevent="submitClick">
       <div class="control">
-        <input class="input" name="name" type="text" placeholder="Ime" />
+        <input class="input" name="name" v-model="name" type="text" placeholder="Ime" required/>
       </div>
       <br />
       <div class="control">
-        <input class="input" name="email" type="text" placeholder="Email" />
+        <input class="input" name="email" v-model="mail" type="text" placeholder="Email" required/>
       </div>
       <br />
       <div class="control">
-        <input class="input" name="number" type="text" placeholder="Telefon" />
+        <input class="input" name="number" v-model="phone" type="text" placeholder="Telefon" required/>
       </div>
       <br />
       <div class="control">
-        <textarea class="textarea" name="msg" placeholder="Poruka"></textarea>
+        <textarea class="textarea" v-model="poruka" name="msg" placeholder="Poruka" required></textarea>
       </div>
       <br />
       <div class="control">
@@ -62,15 +63,19 @@
 export default {
   data: () => {
     return {
+      errors: [],
       name: null,
-      email: null,
-      number: null,
-      msg: null,
+      mail: null,
+      phone: null,
+      poruka: null,
     };
   },
   methods: {
     goToAnketa() {
       this.$router.push("/Anketa");
+    },
+    submitClick() {
+      this.$router.push("/Submit");
     },
   },
 };

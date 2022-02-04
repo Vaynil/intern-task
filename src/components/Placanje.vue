@@ -1,31 +1,33 @@
 <template>
   <div class="tekst">
-    <form>
+    <form id="app" @submit.stop.prevent="submitClick">
       <p class="pocetak">Metoda plaćanja</p>
       <br />
       <div class="choose">
         <button class="dropbtn">Izaberite metodu plaćanja</button>
         <div class="choose-card" name="choose">
-          <a href="#">Visa</a>
-          <a href="#">Mastercard</a>
-          <a href="#">PayPal</a>
+          <select class="input" name="choose" v-model="choose" required>
+            <option>Visa</option>
+            <option>Mastercard</option>
+            <option>PayPal</option>
+          </select>
         </div>
       </div>
       <p>Broj kartice</p>
       <div class="card">
         <div class="control">
-          <input class="input" name="card" type="text" />
+          <input class="input" name="card" v-model="card" type="text" required/>
         </div>
       </div>
       <p>Rok upotrebe kartice</p>
       <div class="expireDate">
-        <input class="input" name="day" type="number" />
-        <input class="input" name="month" type="number" />
+        <input class="input" name="day" v-model="day" type="number" required/>
+        <input class="input" id="rok1" name="month" v-model="month" type="number" required/>
       </div>
       <p>Sigurnosni kod</p>
       <div class="code">
         <div class="control">
-          <input class="input" name="secCode" type="number" />
+          <input class="input" name="secCode" v-model="secCode" type="number" required/>
         </div>
       </div>
       <br />
@@ -33,53 +35,49 @@
       <p>Ime</p>
       <div class="name">
         <div class="control">
-          <input class="input" name="name" type="text" />
+          <input class="input" name="name" v-model="name" type="text" required/>
         </div>
       </div>
       <p>Prezime</p>
       <div class="surname">
         <div class="control">
-          <input class="input" name="surname" type="text" />
+          <input class="input" name="surname" v-model="surname" type="text" required/>
         </div>
       </div>
       <p>Vaš email</p>
       <div class="email">
         <div class="control">
-          <input class="input" name="email" type="text" />
+          <input class="input" name="email" v-model="email" type="text" required/>
         </div>
       </div>
       <p>Ulica,kućni broj</p>
       <div class="street">
         <div class="control">
-          <input class="input" name="street" type="text" />
+          <input class="input" name="street" v-model="street" type="text" required/>
         </div>
       </div>
       <p>Ulica,kućni broj 2</p>
       <div class="street2">
         <div class="control">
-          <input class="input" name="street2" type="text" />
+          <input class="input" name="street2" v-model="street2" type="text" />
         </div>
       </div>
       <p>Grad</p>
       <div class="city">
         <div class="control">
-          <input class="input" name="city" type="text" />
+          <input class="input" name="city" v-model="city" type="text" required/>
         </div>
       </div>
       <p>Zip ili Poštanski broj</p>
       <div class="postalCode">
         <div class="control">
-          <input class="input" name="postalCode" type="text" />
+          <input class="input" name="postalCode" v-model="postalCode" type="text" required/>
         </div>
       </div>
       <br /><br />
       <div class="isplata">
         <button
-          class="button is-link"
-          @click="isporuka"
-          type="submit"
-          value="Submit"
-        >
+          class="button is-link" type="submit" value="Submit">
           Isporuka
         </button>
       </div>
@@ -106,10 +104,8 @@ export default {
     };
   },
   methods: {
-    isporuka() {
-      this.$buefy.notification.open(
-        "Isporučeno, zahvaljujemo na korištenju naše aplikacije :)"
-      );
+    submitClick() {
+      this.$router.push("/naslovna");
     },
   },
 };
@@ -135,7 +131,13 @@ export default {
 }
 
 .expireDate {
-  max-width: 10%;
+  max-width: 25%;
+  display:flex;
+  justify-content: space-between;
+}
+
+#rok1{
+  margin: 0 10px;
 }
 
 .code {
@@ -188,7 +190,7 @@ export default {
 }
 
 .choose-card {
-  display: none;
+  display: block;
   background-color: #f1f1f1;
 }
 
