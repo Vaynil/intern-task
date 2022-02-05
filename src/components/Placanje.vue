@@ -15,7 +15,7 @@
       </div>
       <p>Broj kartice</p>
       <div class="card">
-        <div class="control">
+        <div>
           <input class="input" name="card" v-model="card" type="text" required/>
         </div>
       </div>
@@ -25,53 +25,50 @@
         <input class="input" id="rok1" name="month" v-model="month" type="number" required/>
       </div>
       <p>Sigurnosni kod</p>
-      <div class="code">
-        <div class="control">
-          <input class="input" name="secCode" v-model="secCode" type="number" required/>
-        </div>
-      </div>
+      <div class="code"><input class="input" name="secCode" v-model="secCode" type="number" required/></div>
+
       <br />
       <p class="pocetak">Podaci o naplati</p>
       <p>Ime</p>
       <div class="name">
-        <div class="control">
+        <div>
           <input class="input" name="name" v-model="name" type="text" required/>
         </div>
       </div>
       <p>Prezime</p>
       <div class="surname">
-        <div class="control">
+        <div>
           <input class="input" name="surname" v-model="surname" type="text" required/>
         </div>
       </div>
       <p>Vaš email</p>
       <div class="email">
-        <div class="control">
-          <input class="input" name="email" v-model="email" type="text" required/>
+        <div>
+          <input class="input" name="email" v-model="email" type="email" required/>
         </div>
       </div>
       <p>Ulica,kućni broj</p>
       <div class="street">
-        <div class="control">
+        <div>
           <input class="input" name="street" v-model="street" type="text" required/>
         </div>
       </div>
       <p>Ulica,kućni broj 2</p>
       <div class="street2">
-        <div class="control">
+        <div>
           <input class="input" name="street2" v-model="street2" type="text" />
         </div>
       </div>
       <p>Grad</p>
       <div class="city">
-        <div class="control">
+        <div>
           <input class="input" name="city" v-model="city" type="text" required/>
         </div>
       </div>
       <p>Zip ili Poštanski broj</p>
       <div class="postalCode">
-        <div class="control">
-          <input class="input" name="postalCode" v-model="postalCode" type="text" required/>
+        <div>
+          <input class="input" name="postalCode" v-model="postalCode" type="string" required/>
         </div>
       </div>
       <br /><br />

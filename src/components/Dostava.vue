@@ -24,7 +24,7 @@
       <p>Telefon</p>
       <div class="telefon">
         <div class="control">
-          <input class="input" name="number" v-model="number" type="number" required/>
+          <input class="input" name="number" v-model="number" type="text" required/>
         </div>
       </div>
       <p>Ulica,kućni broj</p>
