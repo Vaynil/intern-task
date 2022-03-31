@@ -1,22 +1,23 @@
 <template>
   <div class="app">
-    <img alt="naslovna logo" src="./assets/naslovna.jpg" />
-    <div class="naslov">Vinoteka</div>
-    <br />
-    <router-link to="naslovna">Naslovna</router-link>
-    <router-link to="anketa">Anketa</router-link>
-    <router-link to="placanje">Plaćanje</router-link>
-    <router-view />
+    <img alt="naslovna logo" src="./assets/book.png" />
+    <PretragaKnjiga />
     <footer class="footer">
       <div class="footer">
-        <p>Vue by Filip Slamar</p>
+        <p>VueJS by Filip Slamar</p>
       </div>
     </footer>
   </div>
 </template>
 
 <script>
-export default {};
+import PretragaKnjiga from './components/PretragaKnjiga'
+export default {
+  name: "App",
+  components: {
+    PretragaKnjiga
+  }
+};
 </script>
 
 <style lang="scss">
@@ -45,7 +46,6 @@ a {
 }
 
 img {
-  display: block;
-  margin: 30px auto;
+  width:30%;
 }
 </style>
