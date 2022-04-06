@@ -3,24 +3,25 @@
     <div class="naslov">Our Books</div>
     <section>
       <form @submit.prevent="getData">
-        <input type="search" v-model="query" />
+        <label>Book name: <input type="search" v-model="query" /> <br /><br /></label>
+        <label>Book page: <input class="brojKnjiga" v-model="page" type="text" /></label>
         <input type="submit" />
       </form>
     </section>
     <br />
-    <label
-      >Book page: <input v-model="page" type="text"
-    /></label>
+    <div class="pagination-row">
+      <button class="pagination-button">PREV</button>
+      <span v-for="(item,index) in new Array(10)" :key="index">
+        <button class="pagination-button" @click="pageNumber = index + 1">{{index +1}}</button>
+      </span>
+      <button class="pagination-button">NEXT</button>
+    </div>
     <br /><br />
+    <label>Set posts per page: <input v-model="postsPerPage" type="text"/></label><br/>
+    Current page / max page: {{ currentPage }} / {{ Math.ceil(list.length / postsPerPage) }}<br />
     <button @click="setCurrentPage(-1)">PREV</button>
     <button @click="setCurrentPage(1)">NEXT</button><br />
-    Current page / max page: {{ currentPage }} /
-    {{ Math.ceil(list.length / postsPerPage) }}<br />
-    <label
-      >Set posts per page: <input v-model="postsPerPage" type="text"
-    /></label>
-    <hr />
-    <br />
+    <hr /><br />
     <table class="tablica" border="1px">
       <tr v-for="item in listaKnjiga" v-bind:key="item.id">
         <td>{{ item.title }}</td>
@@ -46,8 +47,8 @@ export default {
       page: null,
       list: [],
       stranica:[],
-      currentPage: 1,
-      postsPerPage: 10,
+      currentPage: 2,
+      postsPerPage: 5,
     };
   },
   computed: {
@@ -82,6 +83,13 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.pagination-button{
+  padding: 6px;
+  margin: 2px;
+  border-radius: 2px;
+  font-size: 1em;
+  cursor:pointer;
+}
 .tekst {
   overflow: hidden;
   padding: 20px;
@@ -94,6 +102,9 @@ export default {
 
 .knjige{
   width:100%;
+}
+.brojKnjiga{
+  width:7%;
 }
 
 .pocetak {
