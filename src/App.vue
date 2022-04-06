@@ -11,12 +11,12 @@
 </template>
 
 <script>
-import PretragaKnjiga from './components/PretragaKnjiga'
+import PretragaKnjiga from "./components/PretragaKnjiga";
 export default {
   name: "App",
   components: {
-    PretragaKnjiga
-  }
+    PretragaKnjiga,
+  },
 };
 </script>
 
@@ -46,6 +46,6 @@ a {
 }
 
 img {
-  width:30%;
+  width: 30%;
 }
 </style>
