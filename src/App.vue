@@ -3,7 +3,7 @@
     <img alt="naslovna logo" src="./assets/book.png" />
     <PretragaKnjiga />
     <footer class="footer">
-      <div class="footer">
+      <div id="footer">
         <p>VueJS by Filip Slamar</p>
       </div>
     </footer>
@@ -25,6 +25,7 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   margin: 0 auto;
   text-align: center;
+  background-color: #8D8DAA;
 }
 
 .naslov {
@@ -33,19 +34,12 @@ export default {
 }
 
 .footer {
-  background: #d1d1d1;
+  background-color: #F7F5F2;
   max-height: 200px;
-}
-
-a {
-  font-weight: bold;
-  padding: 30px;
-  &.router-link-exact-active {
-    color: #d18484;
-  }
 }
 
 img {
   width: 30%;
+  padding: 15px;
 }
 </style>
