@@ -1,29 +1,35 @@
 <template>
-  <div class="knjige">
-    <div class="naslov">OUR BOOKS</div>
-    <br />
-    <section>
-      <form @submit.prevent="getData">
-        <label>Book name: <input type="search" v-model="query" /></label>
-        <input type="submit" @click="isShowing ^= true"/>
-      </form>
-    </section>
-    <br /><hr />
-    <div v-show="isShowing">
-    Current / Max: {{ page }} / {{ Math.ceil(total / 10) }}<br />
-    <button class="button" v-if="page > 1" @click="setCurrentPage(-1)">PREV</button>
-    <button class="button" v-if="page < total / 10" @click="setCurrentPage(1)">NEXT</button><br />
-    </div>
-    <br />
-    <table class="tablica" border="2px solid">
-      <tr v-for="item in list" v-bind:key="item.id">
-        <td>{{ item.title }}</td>
-        <td>{{ item.subtitle }}</td>
-        <td>{{ item.isbn13 }}</td>
-        <td><img class="bookImg" :src="item.image" /></td>
-      </tr>
-    </table>
-  </div>
+  <b-container fluid class="bv-example-row" style="margin: 0 auto; background-color: #DFDFDE; width: 100%;">
+    <b-row>
+      <b-col class="naslov" style="font-size: 48px; font-weight: bold;">OUR BOOKS</b-col>
+      <div class="w-100"></div>
+      <b-col>
+        <form @submit.prevent="getData">
+          <label>Book name: <input type="search" v-model="query" /></label>
+            <input type="submit" />
+        </form>
+      </b-col>
+    </b-row><hr />
+    <b-row>
+      <b-col>
+        Current / Max: {{ page }} / {{ Math.ceil(total / 10) }}<br />
+        <button class="button" v-if="page > 1" @click="setCurrentPage(-1)">PREV</button>
+        <button class="button" v-if="page < total / 10" @click="setCurrentPage(1)">NEXT</button><br />
+      </b-col>
+    </b-row><br />
+    <b-row cols-sm="1" cols-md="2" cols-lg="4" class="align-items-center">
+      <div v-for="item in list" v-bind:key="item.id" 
+      style="text-align:center; background-color: #F7F5F2; height:450px; align:middle; padding-top:80px;">
+      <img class="bookImg" :src="item.image" /> <br /> Naslov: {{ item.title }} <br /> 
+      Podnaslov: {{ item.subtitle }} <br /> Code: {{ item.isbn13 }}
+      </div>
+    </b-row>
+    <b-row>
+      <b-col style="height:8em; padding:3em;">
+        <p>VueJS by Filip Slamar</p>
+      </b-col>
+    </b-row>
+  </b-container>
 </template>
 
 <script>
@@ -31,8 +37,10 @@ import Vue from "vue";
 import axios from "axios";
 import VueAxios from "vue-axios";
 import JwPagination from 'jw-vue-pagination';
+
 Vue.component('jw-pagination', JwPagination);
 Vue.use(VueAxios, axios);
+
 export default {
   name: "PretragaKnjiga",
   data() {
@@ -41,8 +49,7 @@ export default {
       page: 1,
       list: [],
       total: Number(),
-      stranica:[],
-      isShowing:false
+      stranica:[]
     };
   },
   methods: {
@@ -73,39 +80,9 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.knjige{
-  width:100%;
-  background-color: #DFDFDE;
+img{
+  width: 49%;
 }
-.brojKnjiga{
-  width:7%;
-}
-
-.pocetak {
-  font-size: 24px;
-  font-weight: bold;
-}
-.bookImg {
-  width: 80%;
-}
-
-.tablica {
-  width: 100%;
-}
-
-table tr:nth-child(odd) {
-  background-color: #F7F5F2;
-}
-
-table tr:nth-child(even) {
-  background-color: #F56D91;
-}
-
-
-p {
-  margin-top: 20px;
-}
-
 .button {
   display: inline-block;
   outline: none;
@@ -119,7 +96,4 @@ p {
   line-height: 1.15;
   font-size: 16px;               
 }
-
-
-
 </style>
