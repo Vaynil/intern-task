@@ -20,7 +20,7 @@
     <b-row cols-sm="1" cols-md="2" cols-lg="4" class="align-items-center">
       <div v-for="item in list" v-bind:key="item.id" 
       style="text-align:center; background-color: #F7F5F2; height:450px; align:middle; padding-top:80px;">
-      <img class="bookImg" :src="item.image" /> <br /> Naslov: {{ item.title }} <br /> 
+      <img class="bookImg" :src="item.image" v-on:click="getBookData" /> <br /> Naslov: {{ item.title }} <br /> 
       Podnaslov: {{ item.subtitle }} <br /> Code: {{ item.isbn13 }}
       </div>
     </b-row>
@@ -49,7 +49,8 @@ export default {
       page: 1,
       list: [],
       total: Number(),
-      stranica:[]
+      isbn13: Number(),
+      aboutBook: []
     };
   },
   methods: {
@@ -62,6 +63,19 @@ export default {
           this.total = resp.data.total;
           console.log(resp.data.books);
           console.log(resp.data.total);
+        });
+    },
+    async getBookData() {
+      await axios
+        .get(`https://api.itbook.store/1.0/books/${this.isbn13}`)
+        .then((resp) => {
+          console.log(resp);
+          this.aboutBook = resp.data.authors;
+          this.aboutBook = resp.data.publisher;
+          this.aboutBook = resp.data.desc;
+          console.log(resp.data.authors);
+          console.log(resp.data.publisher);
+          console.log(resp.data.desc);
         });
     },
     setCurrentPage(direction) {
