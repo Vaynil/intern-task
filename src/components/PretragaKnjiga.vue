@@ -19,9 +19,10 @@
     </b-row><br />
     <b-row cols-sm="1" cols-md="2" cols-lg="4" class="align-items-center">
       <div v-for="item in list" v-bind:key="item.id" 
-      style="text-align:center; background-color: #F7F5F2; height:450px; align:middle; padding-top:80px;">
-      <img class="bookImg" :src="item.image" v-on:click="getBookData" /> <br /> Naslov: {{ item.title }} <br /> 
-      Podnaslov: {{ item.subtitle }} <br /> Code: {{ item.isbn13 }}
+      style="text-align:center; background-color: #F7F5F2; height:650px; align:middle; padding-top:80px;">
+      <img id="item.isbn13" :src="item.image" @click="showText = !showText"/> <br /> 
+      <p> Naslov: {{ item.title }} <br/> Podnaslov: {{ item.subtitle }} <br/> ISBN: {{ item.isbn13 }}</p> 
+      <p v-if="!showText"> Autori: {{extra.authors}} <br/> Publisher: {{extra.publisher}} <br/> Opis: {{extra.desc}}</p>
       </div>
     </b-row>
     <b-row>
@@ -49,8 +50,9 @@ export default {
       page: 1,
       list: [],
       total: Number(),
-      isbn13: Number(),
-      aboutBook: []
+      isbn13: [],
+      extra: [],
+      showText:true
     };
   },
   methods: {
@@ -65,19 +67,6 @@ export default {
           console.log(resp.data.total);
         });
     },
-    async getBookData() {
-      await axios
-        .get(`https://api.itbook.store/1.0/books/${this.isbn13}`)
-        .then((resp) => {
-          console.log(resp);
-          this.aboutBook = resp.data.authors;
-          this.aboutBook = resp.data.publisher;
-          this.aboutBook = resp.data.desc;
-          console.log(resp.data.authors);
-          console.log(resp.data.publisher);
-          console.log(resp.data.desc);
-        });
-    },
     setCurrentPage(direction) {
       if (direction === -1 && this.page > 1) {
         this.page -= 1;
@@ -88,7 +77,16 @@ export default {
         this.page += 1;
       }
       this.getData();
-    }
+    },
+    async getBookData() {
+      await axios
+        .get(`https://api.itbook.store/1.0/books/1001635859424`)
+        .then((resp) => {
+          console.log(resp);
+          this.extra = resp.data;
+          console.log(resp.data);
+        });
+    },
   },
 };
 </script>
