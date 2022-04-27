@@ -1,6 +1,11 @@
 <template>
   <div class="app">
-    <img alt="naslovna logo" class="img-fluid" style="width: 30%; padding: 15px;" src="./assets/book.png" />
+    <img
+      alt="naslovna logo"
+      class="img-fluid"
+      style="width: 30%; padding: 15px"
+      src="./assets/book.png"
+    />
     <PretragaKnjiga />
   </div>
 </template>
@@ -20,7 +25,6 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   margin: 0 auto;
   text-align: center;
-  background-color: #8D8DAA;
+  background-color: #8d8daa;
 }
-
 </style>
