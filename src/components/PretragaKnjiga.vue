@@ -18,24 +18,22 @@
           PREV
         </button>
         <button
-          class="button" v-if="page < total / 10" @click="setCurrentPage(1)">
+          class="button"
+          v-if="page < total / 10"
+          @click="setCurrentPage(1)">
           NEXT
-        </button><br />
+        </button>
+        <br />
       </b-col> 
-    </b-row><br />
+    </b-row>
+    <br />
     <b-row cols-sm="1" cols-md="2" cols-lg="4" class="align-items-center">
-      <div v-for="item in list" v-bind:key="item.id" style=" text-align: center; background-color: #f7f5f2; 
-      height: 650px; align: middle; padding-top: 80px; ">
-        <img :id="item.isbn13" :src="item.image" @click="(showText = !showText), getBookData($event); createAdditionalElement($event);" /><br />
+      <div :id="item.isbn13" v-for="item in list" v-bind:key="item.id" style="text-align: center; background-color: #f7f5f2; height: 850px; align: middle; padding-top: 80px;">
+        <img :src="item.image" @click="getBookData($event)" /><br />
         <p>
           Naslov: {{ item.title }} <br />
           Podnaslov: {{ item.subtitle }} <br />
           ISBN: {{ item.isbn13 }}
-        </p>
-        <p id="extra" v-if="!showText">
-          Autori: {{ isbn13.authors }} <br />
-          Publisher: {{ isbn13.publisher }} <br />
-          Opis: {{ isbn13.desc }}
         </p>
       </div>
     </b-row>
@@ -52,9 +50,15 @@ import Vue from "vue";
 import axios from "axios";
 import VueAxios from "vue-axios";
 import JwPagination from "jw-vue-pagination";
+import { BContainer } from "bootstrap-vue";
+import { BRow } from "bootstrap-vue";
+import { BCol } from "bootstrap-vue";
 
-Vue.component("jw-pagination", JwPagination);
 Vue.use(VueAxios, axios);
+Vue.component("jw-pagination", JwPagination);
+Vue.component("b-container", BContainer);
+Vue.component("b-row", BRow);
+Vue.component("b-col", BCol);
 
 export default {
   name: "PretragaKnjiga",
@@ -64,8 +68,7 @@ export default {
       page: 1,
       list: [],
       total: Number(),
-      isbn13: [],
-      showText: true,
+      expandedDivIds: [],
     };
   },
   methods: {
@@ -89,26 +92,32 @@ export default {
       this.getData();
     },
     async getBookData(event) {
-      console.log(event)
+      let isbn13 = event.target.parentElement.id;
       await axios
-        .get(`https://api.itbook.store/1.0/books/${event.target.id}`)
+        .get(`https://api.itbook.store/1.0/books/${isbn13}`)
         .then((resp) => {
-          console.log(resp);
-          this.isbn13 = resp.data;
-          console.log("isbn13 getBookData: ", this.isbn13)
-          console.log(resp.data);
+          return resp.data;
         })
         .then((resp) => {
-          console.log('createAdditionalElement event.target.id:',event.target.id);
-          console.log('createAdditionalElement resp:',resp);
-          this.createAdditionalElement(event.target.id, resp);
+          console.log(resp);
+          this.expandedDivIds.includes("div_" + isbn13)
+            ? this.deleteAdditionalElement(isbn13, resp)
+            : this.createAdditionalElement(isbn13, resp);
         });
     },
-    createAdditionalElement(event){
-      const p = document.getElementById("extra");
-      let html = event;
-      p.insertAdjacentHTML("beforeend", html);
-    }
+    deleteAdditionalElement(id) {
+      let parentElement = document.getElementById(id);
+      parentElement.removeChild(document.getElementById("div_" + id));
+      this.expandedDivIds.splice(this.expandedDivIds.indexOf("div_" + id), 1);
+    },
+    createAdditionalElement(id, bookObject) {
+      let element = document.getElementById(id);
+      let htmlAsText = `<div id="div_${id}"><h5>Authors</h5><p>${bookObject.authors}</p>
+      <h5>Publishers:</h5><p>${bookObject.publisher}</p>
+      <h5>Opis</h5><p>${bookObject.desc}</p></div>`;
+      element.insertAdjacentHTML("beforeend", htmlAsText);
+      this.expandedDivIds.push("div_" + id);
+    },
   },
 };
 </script>
