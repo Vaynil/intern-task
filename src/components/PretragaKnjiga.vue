@@ -17,15 +17,15 @@
         <button class="button" v-if="page > 1" @click="setCurrentPage(-1)">
           PREV
         </button>
-        <button class="button" v-if="page < total / 10" @click="setCurrentPage(1), deleteAll(id)">
+        <button class="button" v-if="page < total / 10" @click="setCurrentPage(1)">
           NEXT
         </button>
         <br />
-      </b-col> 
+      </b-col>
     </b-row>
     <br />
     <b-row cols-sm="1" cols-md="2" cols-lg="4" class="align-items-center" align-v="stretch">
-      <div :id="item.isbn13" v-for="item in list" v-bind:key="item.id" style="background-color: #f7f5f2;">
+      <div :id="item.isbn13" v-for="item in list" v-bind:key="item.id" style="background-color: #f7f5f2">
         <img :src="item.image" @click="getBookData($event)" /><br />
         <p>
           Naslov: {{ item.title }} <br />
@@ -65,18 +65,23 @@ export default {
       page: 1,
       list: [],
       total: Number(),
-      expandedDivIds: []
+      expandedDivIds: [],
     };
   },
   methods: {
     setCurrentPage(direction) {
       if (direction === -1 && this.page > 1) {
         this.page -= 1;
+        for (let i = this.expandedDivIds.length - 1; i >= 0; i--) {
+          this.deleteAdditionalElement(this.expandedDivIds[i].substring(4));
+        }
       } else if (direction === 1 && this.page < this.total / 10) {
         this.page += 1;
+        for (let i = this.expandedDivIds.length - 1; i >= 0; i--) {
+          this.deleteAdditionalElement(this.expandedDivIds[i].substring(4));
+        }
       }
       this.getData();
-      this.expandedDivIds
     },
 
     async getData() {
@@ -93,17 +98,18 @@ export default {
 
     async getBookData(event) {
       let isbn13 = event.target.parentElement.id;
-      await axios
-        .get(`https://api.itbook.store/1.0/books/${isbn13}`)
-        .then((resp) => {
-          return resp.data;
-        })
-        .then((resp) => {
-          console.log(resp);
-          this.expandedDivIds.includes("div_" + isbn13)
-            ? this.deleteAdditionalElement(isbn13, resp)
-            : this.createAdditionalElement(isbn13, resp);
-        });
+      if (this.expandedDivIds.includes("div_" + isbn13)) {
+        this.deleteAdditionalElement(isbn13);
+      } else {
+        await axios
+          .get(`https://api.itbook.store/1.0/books/${isbn13}`)
+          .then((resp) => {
+            return resp.data;
+          })
+          .then((resp) => {
+            this.createAdditionalElement(isbn13, resp);
+          });
+      }
     },
 
     deleteAdditionalElement(id) {
@@ -120,12 +126,6 @@ export default {
       element.insertAdjacentHTML("beforeend", htmlAsText);
       this.expandedDivIds.push("div_" + id);
     },
-
-    deleteAll(id){
-      this.expandedDivIds.splice("div_" + id, 1); 
-    }
-
-
   },
 };
 </script>
