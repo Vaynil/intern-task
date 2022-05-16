@@ -17,18 +17,15 @@
         <button class="button" v-if="page > 1" @click="setCurrentPage(-1)">
           PREV
         </button>
-        <button
-          class="button"
-          v-if="page < total / 10"
-          @click="setCurrentPage(1)">
+        <button class="button" v-if="page < total / 10" @click="setCurrentPage(1), deleteAll(id)">
           NEXT
         </button>
         <br />
       </b-col> 
     </b-row>
     <br />
-    <b-row cols-sm="1" cols-md="2" cols-lg="4" class="align-items-center">
-      <div :id="item.isbn13" v-for="item in list" v-bind:key="item.id" style="text-align: center; background-color: #f7f5f2; height: 850px; align: middle; padding-top: 80px;">
+    <b-row cols-sm="1" cols-md="2" cols-lg="4" class="align-items-center" align-v="stretch">
+      <div :id="item.isbn13" v-for="item in list" v-bind:key="item.id" style="background-color: #f7f5f2;">
         <img :src="item.image" @click="getBookData($event)" /><br />
         <p>
           Naslov: {{ item.title }} <br />
@@ -68,10 +65,20 @@ export default {
       page: 1,
       list: [],
       total: Number(),
-      expandedDivIds: [],
+      expandedDivIds: []
     };
   },
   methods: {
+    setCurrentPage(direction) {
+      if (direction === -1 && this.page > 1) {
+        this.page -= 1;
+      } else if (direction === 1 && this.page < this.total / 10) {
+        this.page += 1;
+      }
+      this.getData();
+      this.expandedDivIds
+    },
+
     async getData() {
       await axios
         .get(`https://api.itbook.store/1.0/search/${this.query}/${this.page}`)
@@ -83,14 +90,7 @@ export default {
           console.log(resp.data.total);
         });
     },
-    setCurrentPage(direction) {
-      if (direction === -1 && this.page > 1) {
-        this.page -= 1;
-      } else if (direction === 1 && this.page < this.total / 10) {
-        this.page += 1;
-      }
-      this.getData();
-    },
+
     async getBookData(event) {
       let isbn13 = event.target.parentElement.id;
       await axios
@@ -105,11 +105,13 @@ export default {
             : this.createAdditionalElement(isbn13, resp);
         });
     },
+
     deleteAdditionalElement(id) {
       let parentElement = document.getElementById(id);
       parentElement.removeChild(document.getElementById("div_" + id));
       this.expandedDivIds.splice(this.expandedDivIds.indexOf("div_" + id), 1);
     },
+
     createAdditionalElement(id, bookObject) {
       let element = document.getElementById(id);
       let htmlAsText = `<div id="div_${id}"><h5>Authors</h5><p>${bookObject.authors}</p>
@@ -118,6 +120,12 @@ export default {
       element.insertAdjacentHTML("beforeend", htmlAsText);
       this.expandedDivIds.push("div_" + id);
     },
+
+    deleteAll(id){
+      this.expandedDivIds.splice("div_" + id, 1); 
+    }
+
+
   },
 };
 </script>
