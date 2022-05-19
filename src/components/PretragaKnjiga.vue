@@ -69,21 +69,28 @@ export default {
     };
   },
   methods: {
+    //function for switching page numbers
     setCurrentPage(direction) {
       if (direction === -1 && this.page > 1) {
         this.page -= 1;
+        //for loop that deletes element from array by iterating through array
+        //starting from last index loop goes through delete function
+        //deletes element from array => array length = 1, loop goes to element n0. 2
+        //that doesnt exist => loop ends
         for (let i = this.expandedDivIds.length - 1; i >= 0; i--) {
           this.deleteAdditionalElement(this.expandedDivIds[i].substring(4));
         }
       } else if (direction === 1 && this.page < this.total / 10) {
         this.page += 1;
+        //second loop because we have PREV and NEXT options
         for (let i = this.expandedDivIds.length - 1; i >= 0; i--) {
           this.deleteAdditionalElement(this.expandedDivIds[i].substring(4));
         }
       }
+      //calls for new books when entering a different page
       this.getData();
     },
-
+    //data request from API
     async getData() {
       await axios
         .get(`https://api.itbook.store/1.0/search/${this.query}/${this.page}`)
@@ -95,7 +102,8 @@ export default {
           console.log(resp.data.total);
         });
     },
-
+    //request for finding books based on their unique isbn
+    //if else used => so we don't have 2 requests called in network fetch/xhr
     async getBookData(event) {
       let isbn13 = event.target.parentElement.id;
       if (this.expandedDivIds.includes("div_" + isbn13)) {
@@ -111,13 +119,13 @@ export default {
           });
       }
     },
-
+    //function remove element from array
     deleteAdditionalElement(id) {
       let parentElement = document.getElementById(id);
       parentElement.removeChild(document.getElementById("div_" + id));
       this.expandedDivIds.splice(this.expandedDivIds.indexOf("div_" + id), 1);
     },
-
+    //function calls a new element into array
     createAdditionalElement(id, bookObject) {
       let element = document.getElementById(id);
       let htmlAsText = `<div id="div_${id}"><h5>Authors</h5><p>${bookObject.authors}</p>
