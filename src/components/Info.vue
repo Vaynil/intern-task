@@ -1,4 +1,5 @@
 <template>
+<<<<<<< HEAD
   <b-container fluid class="bv-example-row" style="margin: 0 auto; background-color: #f7f5f2; width: 100%">
     <b-row style="margin-right: auto; margin-left: auto; padding-left: 15px; padding-right: 15px; padding-top: 15px;">
         <p style="text-align:left">Naslov knjige</p>
@@ -60,6 +61,11 @@
           Securing DevOps teaches you the essential techniques to secure your c...</p>
       </b-col>
     </b-row>
+=======
+  <b-container fluid class="bv-example-row" style="margin: 0 auto; background-color: #dfdfde; width: 100%">
+    <hr />
+    <br />
+>>>>>>> 6a839417400d175ec76e8e638150023fa86d0425
     <b-row>
       <b-col style="height: 8em; padding: 3em">
         <p>VueJS by Filip Slamar</p>
@@ -73,6 +79,7 @@
 </script>
 
 <style>
+<<<<<<< HEAD
 #customers {
   font-family: Arial, Helvetica, sans-serif;
   border-collapse: collapse;
@@ -85,4 +92,7 @@
 }
 #customers tr:nth-child(odd){background-color: #dfdfde;}
 #customers tr:hover {background-color: #ddd;}
+=======
+
+>>>>>>> 6a839417400d175ec76e8e638150023fa86d0425
 </style>

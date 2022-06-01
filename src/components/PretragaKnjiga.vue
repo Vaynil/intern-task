@@ -5,7 +5,7 @@
       <div class="w-100"></div>
       <b-col>
         <form @submit.prevent="getData">
-          <label>Book name: <input type="search" v-model="query" /></label>
+          <label>Book name: <input type="search" v-model="query" /></label><br/>
           <input type="submit" />
         </form>
       </b-col>
@@ -131,10 +131,17 @@ export default {
       let htmlAsText = `<div id="div_${id}"><h5>Authors</h5><p>${bookObject.authors}</p>
       <h5>Publishers:</h5><p>${bookObject.publisher}</p>
       <h5>Opis</h5><p>${bookObject.desc}</p>
+<<<<<<< HEAD
       <button id="info_${id}">Više o knjizi</button></div>`;
       element.insertAdjacentHTML("beforeend", htmlAsText);
       this.expandedDivIds.push("div_" + id);
       document.getElementById(`info_${id}`).addEventListener("click", function() {
+=======
+      <button id="bookInfo">Više o knjizi</button></div>`;
+      element.insertAdjacentHTML("beforeend", htmlAsText);
+      this.expandedDivIds.push("div_" + id);
+      document.getElementById("bookInfo").addEventListener("click", function() {
+>>>>>>> 6a839417400d175ec76e8e638150023fa86d0425
         router.push("/Info");
       });
     },
