@@ -1,7 +1,7 @@
 <template>
   <b-container fluid class="bv-example-row" style="margin: 0 auto; background-color: #dfdfde; width: 100%">
     <b-row>
-      <b-col class="naslov" style="font-size: 48px; font-weight: bold">OUR BOOKS</b-col>
+      <br/>
       <div class="w-100"></div>
       <b-col>
         <form @submit.prevent="getData">
@@ -50,6 +50,7 @@ import JwPagination from "jw-vue-pagination";
 import { BContainer } from "bootstrap-vue";
 import { BRow } from "bootstrap-vue";
 import { BCol } from "bootstrap-vue";
+import router from "@/router";
 
 Vue.use(VueAxios, axios);
 Vue.component("jw-pagination", JwPagination);
@@ -58,7 +59,6 @@ Vue.component("b-row", BRow);
 Vue.component("b-col", BCol);
 
 export default {
-  name: "PretragaKnjiga",
   data() {
     return {
       query: null,
@@ -130,9 +130,13 @@ export default {
       let element = document.getElementById(id);
       let htmlAsText = `<div id="div_${id}"><h5>Authors</h5><p>${bookObject.authors}</p>
       <h5>Publishers:</h5><p>${bookObject.publisher}</p>
-      <h5>Opis</h5><p>${bookObject.desc}</p></div>`;
+      <h5>Opis</h5><p>${bookObject.desc}</p>
+      <button id="info_${id}">Više o knjizi</button></div>`;
       element.insertAdjacentHTML("beforeend", htmlAsText);
       this.expandedDivIds.push("div_" + id);
+      document.getElementById(`info_${id}`).addEventListener("click", function() {
+        router.push("/Info");
+      });
     },
   },
 };
