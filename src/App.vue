@@ -1,23 +1,14 @@
 <template>
   <div class="app">
-    <img
-      alt="naslovna logo"
-      class="img-fluid"
-      style="width: 30%; padding: 15px"
-      src="./assets/book.png"
-    />
-    <PretragaKnjiga />
+    <router-link to="pretragaKnjiga">
+      <img alt="naslovna logo" class="img-fluid" style="width: 50%; padding: 15px" src="./assets/book.png"/>
+    </router-link>
+  <router-view/>
   </div>
 </template>
 
 <script>
-import PretragaKnjiga from "./components/PretragaKnjiga";
-export default {
-  name: "App",
-  components: {
-    PretragaKnjiga,
-  },
-};
+export default {};
 </script>
 
 <style lang="scss">
