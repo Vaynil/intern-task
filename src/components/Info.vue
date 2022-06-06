@@ -10,14 +10,14 @@
     margin-top: 20px;"/>
       </b-col>
       <b-col cols-sm="8" cols-md="8" cols-lg="10">
-        <table id="customers">
+        <table id="customers" v-for="item in resp" v-bind:key="item.id">
           <tr>
             <td>Rating</td>
             <td>Maria Anders</td>
           </tr>
           <tr>
             <td>Authors</td>
-            <td>Christina Berglund</td>
+            <td>{{item.authors}}</td>
           </tr>
           <tr>
             <td>Publisher</td>
@@ -60,7 +60,6 @@
           Securing DevOps teaches you the essential techniques to secure your c...</p>
       </b-col>
     </b-row>
-  <b-container fluid class="bv-example-row" style="margin: 0 auto; background-color: #dfdfde; width: 100%">
     <hr />
     <br />
     <b-row>
@@ -72,7 +71,26 @@
 </template>
 
 <script>
-
+import { eventBus } from "@/main.js"
+export default {
+  name: "Info",
+  data() {
+    return {
+      resp: [
+        {authors: "Hello"}
+      ],
+      id: []
+    }
+  },
+  created() {
+    eventBus.$on('get-id', id => {
+      console.log(id);
+    }),
+    eventBus.$on('get-resp', resp => {
+      console.log(resp);
+    })
+  }
+}
 </script>
 
 <style>

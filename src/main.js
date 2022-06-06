@@ -9,6 +9,8 @@ import router from "./router";
 
 Vue.config.productionTip = false;
 
+export const eventBus = new Vue();
+
 Vue.use(BootstrapVue);
 Vue.use(IconsPlugin);
 

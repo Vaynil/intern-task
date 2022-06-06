@@ -51,6 +51,7 @@ import { BContainer } from "bootstrap-vue";
 import { BRow } from "bootstrap-vue";
 import { BCol } from "bootstrap-vue";
 import router from "@/router";
+import { eventBus } from "@/main.js"
 
 Vue.use(VueAxios, axios);
 Vue.component("jw-pagination", JwPagination);
@@ -59,6 +60,7 @@ Vue.component("b-row", BRow);
 Vue.component("b-col", BCol);
 
 export default {
+  name: "PretragaKnjiga",
   data() {
     return {
       query: null,
@@ -116,6 +118,7 @@ export default {
           })
           .then((resp) => {
             this.createAdditionalElement(isbn13, resp);
+            eventBus.$emit('get-resp', resp)
           });
       }
     },
@@ -136,6 +139,7 @@ export default {
       this.expandedDivIds.push("div_" + id);
       document.getElementById(`info_${id}`).addEventListener("click", function() {
         router.push("/Info");
+      eventBus.$emit('get-id', id) 
       });
     },
   },
