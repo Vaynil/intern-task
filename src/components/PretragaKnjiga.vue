@@ -97,16 +97,14 @@ export default {
       await axios
         .get(`https://api.itbook.store/1.0/search/${this.query}/${this.page}`)
         .then((resp) => {
-          console.log(resp);
           this.list = resp.data.books;
           this.total = resp.data.total;
-          console.log(resp.data.books);
-          console.log(resp.data.total);
         });
     },
     //request for finding books based on their unique isbn
     //if else used => so we don't have 2 requests called in network fetch/xhr
     async getBookData(event) {
+      console.log("getBookData")
       let isbn13 = event.target.parentElement.id;
       if (this.expandedDivIds.includes("div_" + isbn13)) {
         this.deleteAdditionalElement(isbn13);
@@ -118,7 +116,10 @@ export default {
           })
           .then((resp) => {
             this.createAdditionalElement(isbn13, resp);
+            console.log("emit.....getBookData", resp);
+            console.log("EVENTBUS", eventBus)
             eventBus.$emit('get-resp', resp)
+            eventBus._data.resp = resp;
           });
       }
     },
@@ -139,7 +140,7 @@ export default {
       this.expandedDivIds.push("div_" + id);
       document.getElementById(`info_${id}`).addEventListener("click", function() {
         router.push("/Info");
-      eventBus.$emit('get-id', id) 
+      eventBus.$emit('get-id', id);
       });
     },
   },

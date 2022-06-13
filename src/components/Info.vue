@@ -5,47 +5,45 @@
     </b-row>
     <b-row style="margin-right: auto; margin-left: auto; padding-left: 15px; padding-right: 15px;">
       <b-col cols-sm="4" cols-md="4" cols-lg="2" style="background-color: #dfdfde; height:300px; width: 300px;">
-        <img src="../assets/book.png" style="width: 300px;
-    height: 250px;
-    margin-top: 20px;"/>
+        <img src="../assets/book.png" style="width: 300px; height: 250px; margin-top: 20px;"/>
       </b-col>
       <b-col cols-sm="8" cols-md="8" cols-lg="10">
-        <table id="customers" v-for="item in resp" v-bind:key="item.id">
+        <table id="customers"> 
           <tr>
             <td>Rating</td>
-            <td>Maria Anders</td>
+            <td>{{resp.rating}}</td>
           </tr>
           <tr>
             <td>Authors</td>
-            <td>{{item.authors}}</td>
+            <td>{{resp.authors}}</td>
           </tr>
           <tr>
             <td>Publisher</td>
-            <td>Francisco Chang</td>
+            <td>{{resp.publisher}}</td>
           </tr>
           <tr>
             <td>Published</td>
-            <td>Roland Mendel</td>
+            <td>{{resp.year}}</td>
           </tr>
           <tr>
             <td>Pages</td>
-            <td>Roland Mendel</td>
+            <td>{{resp.pages}}</td>
           </tr>
           <tr>
             <td>Language</td>
-            <td>Roland Mendel</td>
+            <td>{{resp.language}}</td>
           </tr>
           <tr>
             <td>Format</td>
-            <td>Roland Mendel</td>
+            <td>{{resp.pdf}}</td>
           </tr>
           <tr>
             <td>ISBN-10</td>
-            <td>Roland Mendel</td>
+            <td>{{resp.isbn10}}</td>
           </tr>
           <tr>
             <td>ISBN-13</td>
-            <td>Roland Mendel</td>
+            <td>{{resp.isbn13}}</td>
           </tr>
         </table>
         <br/>
@@ -76,18 +74,22 @@ export default {
   name: "Info",
   data() {
     return {
-      resp: [
-        {authors: "Hello"}
-      ],
+      resp: {},
       id: []
     }
   },
   created() {
+    console.log("info created:::")
+    console.log("EVENTBUS", eventBus)
+    this.resp = eventBus._data.resp;
     eventBus.$on('get-id', id => {
+      this.id = id;
       console.log(id);
     }),
     eventBus.$on('get-resp', resp => {
-      console.log(resp);
+      console.log('Resp primljen......', resp);
+      this.resp = resp;
+      console.log('Novi resp', this.resp);
     })
   }
 }
