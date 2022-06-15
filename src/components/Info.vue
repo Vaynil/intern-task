@@ -1,17 +1,30 @@
 <template>
-  <b-container fluid class="bv-example-row" style="margin: 0 auto; background-color: #f7f5f2; width: 100%">
-    <b-row style="margin-right: auto; margin-left: auto; padding-left: 15px; padding-right: 15px; padding-top: 15px;">
-        <p style="text-align:left">Naslov knjige</p>
+  <b-container fluid style="margin: 0 auto; background-color: #f7f5f2; width: 100%">
+    <b-row style="margin-right: auto; margin-left: auto; padding-top: 15px;">
+        <p style="text-align:left; padding-left: 11%; font-weight: bold;">{{resp.title}}</p>
     </b-row>
-    <b-row style="margin-right: auto; margin-left: auto; padding-left: 15px; padding-right: 15px;">
-      <b-col cols-sm="4" cols-md="4" cols-lg="2" style="background-color: #dfdfde; height:300px; width: 300px;">
-        <img src="../assets/book.png" style="width: 300px; height: 250px; margin-top: 20px;"/>
+    <b-row style="margin-right: auto; margin-left: auto; padding-left: 55px; padding-right: 55px;">
+      <b-col lg="4" sm="6">
+        <img :src="resp.image" style="vertical-align: middle; width:300px; height:350px; background-color: #dfdfde;"/>
       </b-col>
-      <b-col cols-sm="8" cols-md="8" cols-lg="10">
+      <b-col lg="8" sm="6" style="padding-right: 150px;">
         <table id="customers"> 
           <tr>
             <td>Rating</td>
-            <td>{{resp.rating}}</td>
+            <td>
+              <div class="rate">
+                <input type="radio" id="star5" name="rate" value="5" />
+                <label for="star5" title="text">5 stars</label>
+                <input type="radio" id="star4" name="rate" value="4" />
+                <label for="star4" title="text">4 stars</label>
+                <input type="radio" id="star3" name="rate" value="3" />
+                <label for="star3" title="text">3 stars</label>
+                <input type="radio" id="star2" name="rate" value="2" />
+                <label for="star2" title="text">2 stars</label>
+                <input type="radio" id="star1" name="rate" value="1" />
+                <label for="star1" title="text">1 star</label>
+              </div>
+            </td>
           </tr>
           <tr>
             <td>Authors</td>
@@ -35,7 +48,7 @@
           </tr>
           <tr>
             <td>Format</td>
-            <td>{{resp.pdf}}</td>
+            <td>Paper book / ebook (PDF)</td>
           </tr>
           <tr>
             <td>ISBN-10</td>
@@ -53,9 +66,7 @@
           </li>
         </ul>
         <br/>
-        <p style="text-align:left;">An application running in the cloud can benefit from incredible efficiencies, but they come with unique security threats too. 
-          A DevOps teams highest priority is understanding those risks and hardening the system against them.
-          Securing DevOps teaches you the essential techniques to secure your c...</p>
+        <p style="text-align:left;">{{resp.desc}}</p>
       </b-col>
     </b-row>
     <hr />
@@ -69,7 +80,14 @@
 </template>
 
 <script>
+import Vue from "vue";
 import { eventBus } from "@/main.js"
+import { BContainer } from "bootstrap-vue";
+import { BRow } from "bootstrap-vue";
+import { BCol } from "bootstrap-vue";
+Vue.component("b-container", BContainer);
+Vue.component("b-row", BRow);
+Vue.component("b-col", BCol);
 export default {
   name: "Info",
   data() {
@@ -96,6 +114,11 @@ export default {
 </script>
 
 <style>
+*{
+    margin: 0;
+    padding: 0;
+}
+
 #customers {
   font-family: Arial, Helvetica, sans-serif;
   border-collapse: collapse;
@@ -105,8 +128,47 @@ export default {
   border: 1px solid #ddd;
   padding: 8px;
   text-align:left;
+  width: 50%;
 }
+#customers td:nth-child(even){font-weight: bold;}
 #customers tr:nth-child(odd){background-color: #dfdfde;}
 #customers tr:hover {background-color: #ddd;}
+
+.rate {
+    float: left;
+}
+
+.rate:not(:checked) > label {
+    float:right;
+    width:1em;
+    overflow:hidden;
+    white-space:nowrap;
+    cursor:pointer;
+    font-size:17px;
+    color:#ccc;
+}
+
+.rate:not(:checked) > input {
+    position:absolute;
+    top:-9999px;
+}
+
+.rate:not(:checked) > label:before {
+    content: '★ ';
+}
+.rate > input:checked ~ label {
+    color: #ffc700;    
+}
+.rate:not(:checked) > label:hover,
+.rate:not(:checked) > label:hover ~ label {
+    color: #deb217;  
+}
+.rate > input:checked + label:hover,
+.rate > input:checked + label:hover ~ label,
+.rate > input:checked ~ label:hover,
+.rate > input:checked ~ label:hover ~ label,
+.rate > label:hover ~ input:checked ~ label {
+    color: #c59b08;
+}
 
 </style>

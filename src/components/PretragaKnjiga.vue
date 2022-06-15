@@ -24,7 +24,7 @@
       </b-col>
     </b-row>
     <br />
-    <b-row cols-sm="1" cols-md="2" cols-lg="4" class="align-items-center" align-v="stretch">
+    <b-row cols-sm="1" cols-md="2" cols-lg="4" class="align-items-center" align-v="stretch" padding="10px">
       <div :id="item.isbn13" v-for="item in list" v-bind:key="item.id" style="background-color: #f7f5f2">
         <img :src="item.image" @click="getBookData($event)" /><br />
         <p>
@@ -135,7 +135,7 @@ export default {
       let htmlAsText = `<div id="div_${id}"><h5>Authors</h5><p>${bookObject.authors}</p>
       <h5>Publishers:</h5><p>${bookObject.publisher}</p>
       <h5>Opis</h5><p>${bookObject.desc}</p>
-      <button id="info_${id}">Više o knjizi</button></div>`;
+      <button id="info_${id}" class="button">Više o knjizi</button></div>`;
       element.insertAdjacentHTML("beforeend", htmlAsText);
       this.expandedDivIds.push("div_" + id);
       document.getElementById(`info_${id}`).addEventListener("click", function() {
@@ -152,6 +152,19 @@ img {
   width: 49%;
 }
 .button {
+  display: inline-block;
+  outline: none;
+  cursor: pointer;
+  font-weight: 600;
+  border-radius: 3px;
+  padding: 12px 24px;
+  border: 0;
+  color: #f56d91;
+  background: #f7f5f2;
+  line-height: 1.15;
+  font-size: 16px;
+}
+#button {
   display: inline-block;
   outline: none;
   cursor: pointer;
